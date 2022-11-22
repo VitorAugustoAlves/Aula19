@@ -17,12 +17,12 @@ function preload() {
   mumia_running = loadAnimation("mumia1.png", "mumia2.png", "mumia3.png");
   groundImage = loadImage("Background.jpg");
   nuvem1 = loadImage("cloud.png")
-  cacto1 = loadImage("obstacle1.png")
-  cacto2 = loadImage("obstacle2.png")
-  cacto3 = loadImage("obstacle3.png")
-  cacto4 = loadImage("obstacle4.png")
-  cacto5 = loadImage("obstacle5.png")
-  cacto6 = loadImage("obstacle6.png")
+  cacto1 = loadImage("obstaculo.png")
+  cacto2 = loadImage("obstaculo.png")
+  cacto3 = loadImage("obstaculo.png")
+  cacto4 = loadImage("obstaculo.png")
+  cacto5 = loadImage("obstaculo.png")
+  cacto6 = loadImage("obstaculo.png")
   mumiamorto = loadImage("mumia4.png")
   gameOver = loadImage("gameOver.png")
   restart = loadImage("restart.png")
@@ -68,14 +68,16 @@ function setup() {
 
 function draw() {
   //definir a cor do plano de fundo 
-  background("white");
-  text("Score " + pontos, 500, 30)
+//  background("white");
+  
   //registrando a posição y do trex
   console.log(mumia.y)
 
   //impedir que o trex caia
   mumia.collide(soloinv)
   drawSprites();
+  fill("black")
+  text("Score " + pontos, 500, 30)
 
     if (pontos>0&&pontos%100===0){
       checkpoint.play()
@@ -141,9 +143,11 @@ function criarNuvem() {
 function cactos() {
   if (frameCount % 80 === 0) {
     nome = createSprite(630, 160)
+    nome.debug=false
+    nome.setCollider("rectangle",0,0,250,320,0)
     nome.velocityX = -(10+pontos/100)
     nome.lifetime = 100
-    nome.scale = 0.7
+    nome.scale = 0.3
     cactosG.add(nome)
     var aleatorio = Math.round(random(1, 6))
 
